@@ -1,10 +1,11 @@
-int inByte = "";
+int inByte = 0;
 const int valv1 = 3;//Valve pin
 const int valv2 = 4;//Valve pin
 const int valv3 = 5;//Valve pin
 void setup() {
   // put your setup code here, to run once:
     Serial.begin(9600);
+    Serial.setTimeout(1);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -16,9 +17,8 @@ void loop() {
   // put your main code here, to run repeatedly:
     if (Serial.available() > 0) 
     {
-      inByte = Serial.read();
-      Serial.println(inByte,DEC);
-      inByte=int(inByte);
+      inByte = Serial.readString().toInt();
+      
       if(inByte == 49)
       {
         void valv1_on();
