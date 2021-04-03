@@ -5,7 +5,10 @@ const int valv3 = 5;//Valve pin
 void setup() {
   // put your setup code here, to run once:
     Serial.begin(9600);
-    Serial.setTimeout(1);
+      pinMode(13,OUTPUT);
+  pinMode(valv1, OUTPUT);
+  pinMode(valv2, OUTPUT);
+  pinMode(valv3, OUTPUT);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -18,18 +21,22 @@ void loop() {
     if (Serial.available() > 0) 
     {
       inByte = Serial.readString().toInt();
-      
-      if(inByte == 49)
+      //Serial.println(inByte,DEC);
+      if(inByte == 1)
       {
-        void valv1_on();
+        valv1_on();
       }
-      else if(inByte == 50)
+      else if(inByte == 2)
       {
-        void valv2_on();
+       valv2_on();
       }
-      else if(inByte == 51)
+      else if(inByte == 3)
       {
-        void valv3_on();
+        valv3_on();
+      }
+      else
+      {
+        Serial.println("at Else");
       }
     }
 
